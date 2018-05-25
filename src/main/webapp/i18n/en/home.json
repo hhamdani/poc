@@ -3,9 +3,9 @@
         "title": "Welcome to this Poc!",
         "subtitle": {
             "main": "This is your homepage",
-            "note":"This application is developed with :",
-            "note1":"Backend : Spring boot (Web service REST)",
-            "note2":"Frontend : Angular 5 (Typescript)"
+            "note": "This application is developed with :",
+            "note1": "Backend : Spring boot (Web service REST)",
+            "note2": "Frontend : Angular 5 (Typescript)"
         },
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
