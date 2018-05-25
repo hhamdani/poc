@@ -14,8 +14,8 @@ Cette application contient des modules d'administration, gestion des utilisateur
 
 Pour lancer l'application il suffit d'executer les commandes suivantes dans deux terminaux séparés
 
-./mvnw
-yarn start
+    ./mvnw
+    yarn start
 
 
 
