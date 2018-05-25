@@ -1,0 +1,92 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myClientLabel" jhiTranslate="pocApp.client.home.createOrEditLabel">Create or edit a Client</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!client.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="client.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="client.nom" required/>
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                [(ngModel)]="client.prenom" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.type" for="field_type">Type</label>
+            <select class="form-control" name="type" [(ngModel)]="client.type" id="field_type"  required>
+                <option value="PERSONNE_PHYSIQUE">{{'pocApp.ClientType.PERSONNE_PHYSIQUE' | translate}}</option>
+                <option value="PERSONNE_MORALE">{{'pocApp.ClientType.PERSONNE_MORALE' | translate}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.cin" for="field_cin">Cin</label>
+            <input type="text" class="form-control" name="cin" id="field_cin"
+                [(ngModel)]="client.cin" required/>
+            <div [hidden]="!(editForm.controls.cin?.dirty && editForm.controls.cin?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.cin?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+            <div class="input-group">
+                <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker  #dateNaissanceDp="ngbDatepicker" [(ngModel)]="client.dateNaissance"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.telephone" for="field_telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="field_telephone"
+                [(ngModel)]="client.telephone" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="client.email" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pocApp.client.compte" for="field_compte">Compte</label>
+            <select class="form-control" id="field_compte" name="compte" [(ngModel)]="client.compteId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="compteOption.id" *ngFor="let compteOption of comptes; trackBy: trackCompteById">{{compteOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

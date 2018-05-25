@@ -1,0 +1,48 @@
+
+<div *ngIf="compte">
+    <h2><span jhiTranslate="pocApp.compte.detail.title">Compte</span> {{compte.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pocApp.compte.reference">Reference</span></dt>
+        <dd>
+            <span>{{compte.reference}}</span>
+        </dd>
+        <dt><span jhiTranslate="pocApp.compte.dateOuv">Date Ouv</span></dt>
+        <dd>
+            <span>{{compte.dateOuv | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="pocApp.compte.adresse">Adresse</span></dt>
+        <dd>
+            <span>{{compte.adresse}}</span>
+        </dd>
+        <dt><span jhiTranslate="pocApp.compte.type">Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'pocApp.CompteType.' + compte.type}}">{{compte.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="pocApp.compte.actif">Actif</span></dt>
+        <dd>
+            <span>{{compte.actif}}</span>
+        </dd>
+        <dt><span jhiTranslate="pocApp.compte.client">Client</span></dt>
+        <dd>
+            <div *ngIf="compte.clientId">
+                <a [routerLink]="['/client', compte.clientId]">{{compte.clientId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'compte/'+ compte.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

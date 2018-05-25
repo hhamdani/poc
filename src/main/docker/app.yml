@@ -7,4 +7,4 @@ services:
             - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@poc-oracle:1521:poc
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
-            - 8080:8080
+            - 8089:8089

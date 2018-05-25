@@ -1,0 +1,9 @@
+{
+    "pocApp": {
+        "CompteType" : {
+            "null": "",
+            "ORDINAIRE": "ORDINAIRE",
+            "VIP": "VIP"
+        }
+    }
+}

@@ -1,0 +1,80 @@
+<div>
+    <h2>
+        <span jhiTranslate="pocApp.compte.home.title">Comptes</span>
+        <button class="btn btn-primary float-right jh-create-entity create-compte" [routerLink]="['/', { outlets: { popup: ['compte-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pocApp.compte.home.createLabel">
+            Create new Compte
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="comptes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reference"><span jhiTranslate="pocApp.compte.reference">Reference</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dateOuv"><span jhiTranslate="pocApp.compte.dateOuv">Date Ouv</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="adresse"><span jhiTranslate="pocApp.compte.adresse">Adresse</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="type"><span jhiTranslate="pocApp.compte.type">Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="actif"><span jhiTranslate="pocApp.compte.actif">Actif</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="clientId"><span jhiTranslate="pocApp.compte.client">Client</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let compte of comptes ;trackBy: trackId">
+                <td><a [routerLink]="['../compte', compte.id ]">{{compte.id}}</a></td>
+                <td>{{compte.reference}}</td>
+                <td>{{compte.dateOuv | date:'medium'}}</td>
+                <td>{{compte.adresse}}</td>
+                <td jhiTranslate="{{'pocApp.CompteType.' + compte.type}}">{{compte.type}}</td>
+                <td>{{compte.actif}}</td>
+                <td>
+                    <div *ngIf="compte.clientId">
+                        <a [routerLink]="['../client', compte.clientId  ]" >{{compte.clientId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../compte', compte.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'compte/'+ compte.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'compte/'+ compte.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="comptes && comptes.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

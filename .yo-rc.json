@@ -8,7 +8,7 @@
     "baseName": "poc",
     "packageName": "com.houssem.poc",
     "packageFolder": "com/houssem/poc",
-    "serverPort": "8080",
+    "serverPort": "8089",
     "authenticationType": "jwt",
     "cacheProvider": "ehcache",
     "enableHibernateCache": true,

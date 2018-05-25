@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityRelationshipName": "compte"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "reference",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateOuv",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "adresse",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "CompteType",
+            "fieldValues": "ORDINAIRE,VIP"
+        },
+        {
+            "fieldName": "actif",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20180525032730",
+    "entityTableName": "compte",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

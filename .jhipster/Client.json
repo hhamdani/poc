@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "javadoc": "A relationship",
+            "relationshipName": "comptes",
+            "otherEntityName": "compte",
+            "otherEntityRelationshipName": "client"
+        },
+        {
+            "relationshipName": "compte",
+            "otherEntityName": "compte",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ClientType",
+            "fieldValues": "PERSONNE_PHYSIQUE,PERSONNE_MORALE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "cin",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateNaissance",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180525032729",
+    "entityTableName": "client",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

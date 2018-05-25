@@ -1,0 +1,9 @@
+{
+    "pocApp": {
+        "ClientType" : {
+            "null": "",
+            "PERSONNE_PHYSIQUE": "PERSONNE_PHYSIQUE",
+            "PERSONNE_MORALE": "PERSONNE_MORALE"
+        }
+    }
+}
